@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Settings from '../Settings'
+import Content from '../Shared/Content'
 import AppBar from './AppBar'
 import './App.css';
 import AppLayout from './AppLayout'
@@ -11,7 +12,9 @@ class App extends Component {
       <AppLayout>
         <AppProvider>
           <AppBar/>
-          <Settings/>
+          <Content>
+            <Settings/>
+          </Content>
         </AppProvider>
       </AppLayout>
     );
