@@ -1,8 +1,10 @@
 import React from 'react'
-
+import _ from 'lodash'
 const cc = require('cryptocompare')
 
 export const AppContext = React.createContext()
+
+const MAX_FAVORITES = 5
 
 export class AppProvider extends React.Component {
   constructor(props){
@@ -12,8 +14,23 @@ export class AppProvider extends React.Component {
       favorites: ['BTC', 'ETH', 'DOGE'],
       ...this.savedSettings(),
       setPage: this.setPage,
+      addCoin: this.addCoin,
+      removeCoin: this.removeCoin,
       confirmFavorites: this.confirmFavorites
     }
+  }
+
+  addCoin = key => {
+    let favorites = [...this.state.favorites];
+    if(favorites.length < MAX_FAVORITES){
+      favorites.push(key)
+      this.setState({favorites})
+    }
+  }
+
+  removeCoin = key => {
+    let favorites = [...this.state.favorites]
+    this.setState({favorites: _.pull(favorites, key)})
   }
 
   componentDidMount = () => {
