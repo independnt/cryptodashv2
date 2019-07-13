@@ -4,7 +4,7 @@ const cc = require('cryptocompare')
 
 export const AppContext = React.createContext()
 
-const MAX_FAVORITES = 10
+const MAX_FAVORITES = 5
 
 export class AppProvider extends React.Component {
   constructor(props){
@@ -17,7 +17,8 @@ export class AppProvider extends React.Component {
       addCoin: this.addCoin,
       isInFavorites: this.isInFavorites,
       removeCoin: this.removeCoin,
-      confirmFavorites: this.confirmFavorites
+      confirmFavorites: this.confirmFavorites,
+      setFilteredCoins: this.setFilteredCoins
     }
   }
 
@@ -63,6 +64,8 @@ export class AppProvider extends React.Component {
   }
 
   setPage = page => this.setState({page})
+
+  setFilteredCoins = (filteredCoins) => this.setState({filteredCoins})
 
   render(){
     return (
